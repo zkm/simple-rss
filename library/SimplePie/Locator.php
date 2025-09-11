@@ -64,6 +64,8 @@ class SimplePie_Locator
 	var $checked_feeds = 0;
 	var $max_checked_feeds = 10;
 	protected $registry;
+    /** @var DOMDocument|null */
+    protected $dom;
 
 	public function __construct(SimplePie_File $file, $timeout = 10, $useragent = null, $max_checked_feeds = 10)
 	{
@@ -91,7 +93,7 @@ class SimplePie_Locator
 		$this->registry = $registry;
 	}
 
-	public function find($type = SIMPLEPIE_LOCATOR_ALL, &$working)
+	public function find(&$working, $type = SIMPLEPIE_LOCATOR_ALL)
 	{
 		if ($this->is_feed($this->file))
 		{

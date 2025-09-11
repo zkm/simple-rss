@@ -953,7 +953,7 @@ class SimplePie_Item
 	public function get_link($key = 0, $rel = 'alternate')
 	{
 		$links = $this->get_links($rel);
-		if ($links[$key] !== null)
+		if (is_array($links) && array_key_exists($key, $links) && $links[$key] !== null)
 		{
 			return $links[$key];
 		}

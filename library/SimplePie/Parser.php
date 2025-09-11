@@ -146,9 +146,16 @@ class SimplePie_Parser
 			$xml = xml_parser_create_ns($this->encoding, $this->separator);
 			xml_parser_set_option($xml, XML_OPTION_SKIP_WHITE, 1);
 			xml_parser_set_option($xml, XML_OPTION_CASE_FOLDING, 0);
-			xml_set_object($xml, $this);
-			xml_set_character_data_handler($xml, 'cdata');
-			xml_set_element_handler($xml, 'tag_open', 'tag_close');
+			// In PHP 8.4+, xml_set_object()/string callbacks are deprecated. Use proper callables.
+			$that = $this;
+			xml_set_character_data_handler($xml, function($parser, $data) use ($that) {
+				$that->cdata($parser, $data);
+			});
+			xml_set_element_handler(
+				$xml,
+				function($parser, $name, $attrs) use ($that) { $that->tag_open($parser, $name, $attrs); },
+				function($parser, $name) use ($that) { $that->tag_close($parser, $name); }
+			);
 
 			// Parse!
 			if (!xml_parse($xml, $data, true))

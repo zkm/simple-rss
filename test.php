@@ -1,12 +1,13 @@
 <?php
-include_once('../autoloader.php');
-include_once('../idn/idna_convert.class.php');
+// Robust includes from the project root
+include_once(__DIR__ . '/autoloader.php');
+include_once(__DIR__ . '/idn/idna_convert.class.php');
 
 // Parse it
 $feed = new SimplePie();
 if (isset($_GET['feed']) && $_GET['feed'] !== '')
 {
-	if (get_magic_quotes_gpc())
+	if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
 	{
 		$_GET['feed'] = stripslashes($_GET['feed']);
 	}
@@ -32,12 +33,12 @@ $feed->handle_content_type();
 <pre>
 <?php
 
-// memory_get_peak_usage() only exists on PHP 5.2 and higher if PHP is compiled with the --enable-memory-limit configuration option or on PHP 5.2.1 and higher (which runs as if --enable-memory-limit was on, with no option)
+// memory_get_peak_usage() only exists on older PHP builds without memory limit; guard with function_exists
 if (function_exists('memory_get_peak_usage'))
 {
 	var_dump($time, memory_get_usage(), memory_get_peak_usage());
 }
-// memory_get_usage() only exists if PHP is compiled with the --enable-memory-limit configuration option or on PHP 5.2.1 and higher (which runs as if --enable-memory-limit was on, with no option)
+// memory_get_usage() may be unavailable; guard with function_exists
 else if (function_exists('memory_get_usage'))
 {
 	var_dump($time, memory_get_usage());

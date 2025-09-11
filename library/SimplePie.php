@@ -1514,7 +1514,7 @@ class SimplePie
 				unset($file);
 				try
 				{
-					if (!($file = $locate->find($this->autodiscovery, $this->all_discovered_feeds)))
+					if (!($file = $locate->find($this->all_discovered_feeds, $this->autodiscovery)))
 					{
 						$this->error = "A feed could not be found at $this->feed_url. A feed with an invalid mime type may fall victim to this error, or " . SIMPLEPIE_NAME . " was unable to auto-discover it.. Use force_feed() if you are certain this URL is a real feed.";
 						$this->registry->call('Misc', 'error', array($this->error, E_USER_NOTICE, __FILE__, __LINE__));
@@ -2992,7 +2992,10 @@ class SimplePie
 	 */
 	public static function sort_items($a, $b)
 	{
-		return $a->get_date('U') <= $b->get_date('U');
+		$ad = (int) $a->get_date('U');
+		$bd = (int) $b->get_date('U');
+		// Newest first (descending timestamp)
+		return $bd <=> $ad;
 	}
 
 	/**

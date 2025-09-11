@@ -55,6 +55,9 @@ class SimplePie_Sanitize
 {
 	// Private vars
 	var $base;
+    
+    /** @var SimplePie_Registry */
+    protected $registry;
 
 	// Options
 	var $remove_div = true;
