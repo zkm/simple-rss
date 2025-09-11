@@ -4,7 +4,7 @@ This repo is a lightweight wrapper around SimplePie with a browser demo (`index.
 
 ## Requirements
 
-- PHP 7.4+ (PHP 8.x works)
+- PHP 7.4–8.4 (8.x recommended)
 - Network access to the feed URLs you want to test
 
 ## Quick start: browser demo
