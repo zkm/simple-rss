@@ -1,0 +1,18 @@
+{
+  "name": "zkm/simple-rss",
+  "description": "SimplePie demo with PHP 8 compatibility fixes and CI/Pages wiring.",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": ">=7.4",
+    "ext-dom": "*",
+    "ext-xml": "*",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "files": ["autoloader.php"]
+  },
+  "scripts": {
+    "test": "php ci_smoke.php"
+  }
+}
