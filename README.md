@@ -60,6 +60,20 @@ Exit codes:
 - 1: missing URL
 - 2: parser init error (check the printed error message)
 
+## CI
+
+- `.github/workflows/ci.yml` runs on pushes and PRs across PHP 8.1–8.4.
+  - Lints all PHP files
+  - Runs a smoke test (`ci_smoke.php`) that fetches a feed and asserts `> 0` items
+  - You can override the feed by setting a repository variable `FEED_URL` (defaults to https://hnrss.org/frontpage).
+
+## GitHub Pages
+
+- `.github/workflows/pages.yml` builds a static snapshot of `index.php` with a default feed and publishes it to GitHub Pages.
+  - The workflow runs on pushes to `master` (or manually via "Run workflow").
+  - Output is written to `public/index.html` and deployed.
+  - You can customize the default feed by editing the curl line in the workflow.
+
 ## Notes
 
 - Caching is disabled in the test paths to make iteration faster. For production, enable caching for performance and to be friendly to feed providers.
