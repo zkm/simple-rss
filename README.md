@@ -21,11 +21,13 @@ You can use PHP's built-in web server to try the demo without Apache/Nginx.
 
    - http://127.0.0.1:8000/index.php
 
-   Example feeds to try:
+  Example feeds to try:
 
-   - https://hnrss.org/frontpage
-   - https://www.nasa.gov/rss/dyn/breaking_news.rss
-   - https://planet.php.net/rss/atom.xml
+  - https://hnrss.org/frontpage
+  - https://www.nasa.gov/rss/dyn/breaking_news.rss
+  - https://feeds.bbci.co.uk/news/world/rss.xml
+
+  Note: this bundled SimplePie version handles RSS feeds more reliably than some Atom feeds on modern PHP.
 
    If you see errors, they'll be printed at the top of the page.
 

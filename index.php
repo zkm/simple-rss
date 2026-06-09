@@ -64,7 +64,209 @@ $feed->handle_content_type();
 
 <html lang="en-US">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SimplePie: Demo</title>
+<style>
+	:root {
+		--bg: #f4f1ea;
+		--surface: #ffffff;
+		--surface-soft: #f8f6f2;
+		--text: #1f2a33;
+		--muted: #5c6770;
+		--border: #d9d2c4;
+		--accent: #0f766e;
+		--accent-soft: #d7f3f0;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html, body,
+	h1, h2, h3, h4, h5, h6,
+	p, ul, ol, li,
+	figure, blockquote {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		margin: 0;
+		padding: 28px 14px 40px;
+		font-size: 16px;
+		font-family: "Source Serif Pro", "Palatino Linotype", Palatino, "Book Antiqua", serif;
+		line-height: 1.7;
+		color: var(--text);
+		background:
+			radial-gradient(circle at 0 0, rgba(15, 118, 110, 0.1), transparent 38%),
+			radial-gradient(circle at 100% 100%, rgba(173, 118, 60, 0.12), transparent 34%),
+			var(--bg);
+	}
+
+	a {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	a:hover,
+	a:focus {
+		text-decoration: underline;
+	}
+
+	#site {
+		max-width: 980px;
+		margin: 0 auto;
+	}
+
+	#content {
+		display: grid;
+		gap: 14px;
+	}
+
+	#sp_results {
+		display: grid;
+		gap: 14px;
+		min-width: 0;
+	}
+
+	.chunk {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 14px;
+		padding: 16px 18px;
+		box-shadow: 0 6px 22px rgba(25, 36, 48, 0.08);
+		overflow-wrap: anywhere;
+		min-width: 0;
+	}
+
+	.chunk.focus {
+		background: linear-gradient(180deg, var(--surface-soft), #ffffff 42%);
+	}
+
+	#sp_form {
+		margin: 0;
+	}
+
+	#sp_input p {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 10px;
+		margin: 0;
+	}
+
+	#feed_input {
+		flex: 1;
+		min-width: 0;
+		padding: 10px 12px;
+		font: inherit;
+		border-radius: 10px;
+		border: 1px solid var(--border);
+		background: #fff;
+	}
+
+	.button {
+		padding: 10px 16px;
+		border: 0;
+		border-radius: 10px;
+		font: inherit;
+		font-weight: 700;
+		color: #fff;
+		background: var(--accent);
+		cursor: pointer;
+	}
+
+	.button:hover {
+		filter: brightness(0.95);
+	}
+
+	.header {
+		margin: 0 0 8px;
+		line-height: 1.3;
+	}
+
+	h4 {
+		margin: 0 0 10px;
+		line-height: 1.35;
+	}
+
+	.footnote {
+		font-size: 0.9rem;
+		color: var(--muted);
+	}
+
+	.sp_errors {
+		margin-top: 10px;
+		padding: 10px 12px;
+		border-radius: 10px;
+		border: 1px solid #d53f3f;
+		background: #fff5f5;
+		color: #7f1d1d;
+	}
+
+	/* Prevent feed media from breaking layout */
+	#sp_results img,
+	#sp_results video,
+	#sp_results iframe,
+	#sp_results embed,
+	#sp_results object {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	#sp_results .chunk * {
+		max-width: 100%;
+	}
+
+	#sp_results .chunk [width] {
+		max-width: 100% !important;
+	}
+
+	#sp_results .chunk pre,
+	#sp_results .chunk code,
+	#sp_results .chunk samp {
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+
+	#sp_results .chunk ul,
+	#sp_results .chunk ol {
+		padding-left: 1.2rem;
+	}
+
+	#sp_results table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	@media (max-width: 720px) {
+		body {
+			padding: 16px 8px 24px;
+		}
+
+		.chunk {
+			padding: 12px;
+			border-radius: 12px;
+		}
+
+		#sp_input p {
+			grid-template-columns: 1fr;
+		}
+
+		.button {
+			width: 100%;
+		}
+
+		h3,
+		h4 {
+			word-break: break-word;
+		}
+	}
+</style>
 </head>
 
 <body id="bodydemo">
@@ -77,7 +279,7 @@ $feed->handle_content_type();
 			<form action="" method="get" name="sp_form" id="sp_form">
 				<div id="sp_input">
 					<!-- If a feed has already been passed through the form, then make sure that the URL remains in the form field. -->
-					<p><input type="text" name="feed" value="<?php if ($feed->subscribe_url()) echo $feed->subscribe_url(); ?>" class="text" id="feed_input" />&nbsp;<input type="submit" value="Read" class="button" /></p>
+									<p><input type="text" name="feed" value="<?php if ($feed->subscribe_url()) echo $feed->subscribe_url(); ?>" class="text" id="feed_input" /><input type="submit" value="Read" class="button" /></p>
 				</div>
 			</form>
 
