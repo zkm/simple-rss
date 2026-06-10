@@ -28,6 +28,9 @@ jobs:
           find . -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
       - name: Smoke test (fetch a feed and assert items > 0)
+        env:
+          FEED_URL: ${{ vars.FEED_URL }}
+          FEED_FALLBACK_URL: ${{ vars.FEED_FALLBACK_URL }}
         run: |
           set -euo pipefail
           php ci_smoke.php

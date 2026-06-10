@@ -67,7 +67,10 @@ Exit codes:
 - `.github/workflows/ci.yml` runs on pushes and PRs across PHP 8.1–8.4.
   - Lints all PHP files
   - Runs a smoke test (`ci_smoke.php`) that fetches a feed and asserts `> 0` items
-  - You can override the feed by setting a repository variable `FEED_URL` (defaults to https://hnrss.org/frontpage).
+  - Uses retry logic and `force_feed()` fallback to reduce flaky failures from transient MIME autodiscovery issues
+  - You can override feeds with repository variables:
+    - `FEED_URL` (primary, default: https://hnrss.org/frontpage)
+    - `FEED_FALLBACK_URL` (secondary, default: https://feeds.bbci.co.uk/news/world/rss.xml)
 
 ## GitHub Pages
 
