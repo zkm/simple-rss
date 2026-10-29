@@ -1,5 +1,12 @@
 # Simple RSS (SimplePie Demo)
 
+[![CI](https://github.com/zkm/simple-rss/actions/workflows/ci.yml/badge.svg)](https://github.com/zkm/simple-rss/actions/workflows/ci.yml)
+[![demo](https://img.shields.io/website?url=https%3A%2F%2Fzkm.github.io%2Fsimple-rss%2F&label=demo)](https://zkm.github.io/simple-rss/)
+
+![PHP 8.1–8.4](https://img.shields.io/badge/PHP-8.1%E2%80%938.4-777BB4?logo=php&logoColor=white)
+![SimplePie](https://img.shields.io/badge/SimplePie-5A5A5A)
+![Composer](https://img.shields.io/badge/Composer-885630?logo=composer&logoColor=white)
+
 This repo is a lightweight wrapper around SimplePie with a browser demo (`index.php`) and two quick tests: a web test (`test.php`) and a CLI script (`cli_test.php`).
 
 ## Requirements
